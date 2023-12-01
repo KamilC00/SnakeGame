@@ -141,8 +141,7 @@ class Program
                     Console.Clear();
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.SetCursorPosition(screenwidth / 5, screenheight / 2);
-                    // TODO: IMPLEMENT THIS
-                    //???
+                    Console.WriteLine("Game Over");
                     Console.SetCursorPosition(screenwidth / 5, screenheight / 2 + 1);
                     Console.WriteLine("Dein Score ist: " + score);
                     Console.SetCursorPosition(screenwidth / 5, screenheight / 2 + 2);
@@ -163,8 +162,7 @@ public class Pixel
 public class Obstakel
 {
     public int Xpos { get; set; }
-    // TODO: IMPLEMENT THIS
-    // ?
+    public int Ypos { get; set; }
     public ConsoleColor schermKleur { get; set; }
     public string karacter { get; set; }
 }
