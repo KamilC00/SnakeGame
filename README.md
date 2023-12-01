@@ -29,7 +29,6 @@ Gra została napisana w języku C# z użyciem konsoli. Wykorzystuje listę `tail
 ## Rozwój projektu
 
 Potencjalne funkcje lub ulepszenia:
-- Losowo generowane przeszkody.
 - Efekty dźwiękowe.
 - Tryb wieloosobowy.
 
