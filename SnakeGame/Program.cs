@@ -10,6 +10,7 @@ class Program
         Console.WindowWidth = 32;
         int screenwidth = Console.WindowWidth;
         int screenheight = Console.WindowHeight;
+        Console.WindowHeight += 2;
         Random randomnummer = new Random();
         // TODO: NEEDS FIX
         //
@@ -19,6 +20,11 @@ class Program
         // hoofd.schermkleur = ConsoleColor.Red;
         string movement = "RIGHT";
         List<int> telje = new List<int>();
+
+        int tailLength = 0;
+
+        List<Pixel> tail = new List<Pixel>();
+
         int score = 0;
         Pixel hoofd = new Pixel();
         hoofd.xPos = screenwidth / 2;
@@ -32,8 +38,8 @@ class Program
 
         DateTime tijd = DateTime.Now;
         string obstacle = "*";
-        int obstacleXpos = randomnummer.Next(1, screenwidth);
-        int obstacleYpos = randomnummer.Next(1, screenheight);
+        int obstacleXpos = randomnummer.Next(1, screenwidth - 2);
+        int obstacleYpos = randomnummer.Next(1, screenheight - 2);
         while (true)
         {
             Console.Clear();
@@ -68,12 +74,20 @@ class Program
                 Console.Write("■");
             }
             Console.ForegroundColor =  ConsoleColor.DarkGreen;
-            Console.WriteLine("Score: " + score);
+            Console.WriteLine("\nScore: " + score);
             Console.ForegroundColor = ConsoleColor.White;
-            Console.Write("H");
-            for (int i = 0; i < telje.Count(); i++)
+            //Console.Write("H");
+
+            tail.Insert(0, new Pixel { xPos = hoofd.xPos, yPos = hoofd.yPos });
+            
+            while (tail.Count > tailLength+1)
             {
-                Console.SetCursorPosition(telje[i], telje[i + 1]);
+                tail.RemoveAt(tail.Count - 1);
+            }
+
+            for (int i = 0; i < tail.Count(); i++)
+            {
+                Console.SetCursorPosition(tail[i].xPos, tail[i].yPos);
                 Console.Write("■");
             }
             //Draw Snake
@@ -117,11 +131,8 @@ class Program
                 score++;
                 obstacleXpos = randomnummer.Next(1, screenwidth - 2);
                 obstacleYpos = randomnummer.Next(1, screenheight - 2);
+                tailLength++;
             }
-            teljePositie.Insert(0, hoofd.xPos);
-            teljePositie.Insert(1, hoofd.yPos);
-            teljePositie.RemoveAt(teljePositie.Count - 1);
-            teljePositie.RemoveAt(teljePositie.Count - 1);
             //Kollision mit Wände oder mit sich selbst (translated: Colliding with walls or with yourself)
             if (hoofd.xPos == 0 || hoofd.xPos == screenwidth - 1 || hoofd.yPos == 0 || hoofd.yPos == screenheight - 1)
             {
@@ -134,9 +145,9 @@ class Program
                 Console.SetCursorPosition(screenwidth / 5, screenheight / 2 + 2);
                 Environment.Exit(0);
             }
-            for (int i = 0; i < telje.Count(); i += 2)
+            for (int i = 0; i < tail.Count(); i++ )
             {
-                if (hoofd.xPos == telje[i] && hoofd.yPos == telje[i + 1])
+                if (hoofd.xPos == tail[i].xPos && hoofd.yPos == tail[i].yPos)
                 {
                     Console.Clear();
                     Console.ForegroundColor = ConsoleColor.Red;
