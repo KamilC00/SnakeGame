@@ -94,10 +94,9 @@ class Program
                 case ConsoleKey.UpArrow:
                     movement = "UP";
                     break;
-                // TODO: NEEDS FIX
-                // case ConsoleKey.DownArrow:
-                //     movement = "DOWN";
-                // // ???
+                case ConsoleKey.DownArrow:
+                    movement = "DOWN";
+                    break;
                 case ConsoleKey.LeftArrow:
                     movement = "LEFT";
                     break;
