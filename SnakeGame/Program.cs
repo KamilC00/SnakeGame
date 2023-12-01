@@ -67,8 +67,7 @@ class Program
                 Console.SetCursorPosition(screenwidth - 1, i);
                 Console.Write("■");
             }
-            // TODO: IMPLEMENT THIS
-            // Console.ForegroundColor =  /* ?? */;
+            Console.ForegroundColor =  ConsoleColor.DarkGreen;
             Console.WriteLine("Score: " + score);
             Console.ForegroundColor = ConsoleColor.White;
             Console.Write("H");
@@ -112,14 +111,13 @@ class Program
                 hoofd.xPos--;
             if (movement == "RIGHT")
                 hoofd.xPos++;
-            // TODO: NEEDS FIX
-            // //Hindernis treffen (translated: Hit an obstacle)
-            // if (hoofd.xPos == obstacleXpos /* ?? */ == obstacleYpos)
-            // {
-            //     score++;
-            //     obstacleXpos = randomnummer.Next(1, screenwidth);
-            //     obstacleYpos = randomnummer.Next(1, screenheight);
-            // }
+            //Hindernis treffen (translated: Hit an obstacle)
+            if (hoofd.xPos == obstacleXpos && hoofd.yPos == obstacleYpos)
+            {
+                score++;
+                obstacleXpos = randomnummer.Next(1, screenwidth - 2);
+                obstacleYpos = randomnummer.Next(1, screenheight - 2);
+            }
             teljePositie.Insert(0, hoofd.xPos);
             teljePositie.Insert(1, hoofd.yPos);
             teljePositie.RemoveAt(teljePositie.Count - 1);
